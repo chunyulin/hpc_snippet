@@ -1,0 +1,10 @@
+module purge
+module load compiler/intel/2018
+module load nvidia/cuda/10.0
+
+### VASP-5 only support std/ncl for GPU
+make gpu
+make gpu_ncl
+
+### CPU version
+make all
