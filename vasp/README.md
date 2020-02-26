@@ -6,7 +6,7 @@
 
 ### Reference:
 * [GPU_port_of_VASP](https://www.vasp.at/wiki/index.php/GPU_port_of_VASP)
-* [An interesting commercial service](https://docs.exabyte.io/tutorials/dft/electronic/overview/)
+* [An interesting commercial service of VASP](https://docs.exabyte.io/tutorials/dft/electronic/overview/)
 
 
 
