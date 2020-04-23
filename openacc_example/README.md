@@ -1,8 +1,10 @@
 A three-step OpenACC example code. To run on Twnia-2, just compile in each ./step folder with
     
-    module purge
-    module load pgi/2020
-    make
+```bash
+module purge
+module load pgi/2020
+make
+```
 
 and submit by ```sbatch submit.slurm```
 
