@@ -1,3 +1,12 @@
+### Toolchains status
+
+|               | Intel   | PGI   |  GNU |
+| ------------- |---------------| ----- | ---|
+| VASP6 CPU       | OK                       |   |   |
+| VASP6 GPU       | seg fault (except r32)   |      |
+| VASP6 ACC      |  -     |     | - |
+
+
 ### Compile VASP on Twnia-2
 
 * ```makefile.include```: The makefile for VASP 5.4.4+patch.5.4.4.16052018.gz on Twnia-2
