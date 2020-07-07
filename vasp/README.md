@@ -1,10 +1,10 @@
 ### Toolchains status
 
-|               | Intel   | PGI   |  GNU |
-| ------------- |---------------| ----- | ---|
-| VASP6 CPU       | OK                       |   |   |
-| VASP6 GPU       | seg fault (except r32)   |      |
-| VASP6 ACC      |  -     |     | - |
+|               | Intel             |  GNU  | GNU_MKL | PGI |
+| ------------- | ----------------- | ----- | ------- |       |
+| VASP6 CPU     | segf (except r32) |  OK   | segf    |   |
+| VASP6 cuda    | OK                |  OK   | OK      |    |
+| VASP6 ACC     |  -                |  -    | -       |  ?  |
 
 
 ### Compile VASP on Twnia-2
