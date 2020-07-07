@@ -1,9 +1,9 @@
 ### Toolchains status
 
-|               | Intel             |  GNU  | GNU_MKL | PGI |
-| ------------- | ----------------- | ----- | ------- |       |
-| VASP6 CPU     | segf (except r32) |  OK   | segf    |   |
-| VASP6 cuda    | OK                |  OK   | OK      |    |
+|               | Intel             |  GNU lapack  | GNU_MKL | PGI |
+| ------------- | ----------------- | ----- | ------- | ---- |
+| VASP6 CPU     | segf (except r32) |  OK   | segf    |       |
+| VASP6 cuda    | OK                |  OK   | OK      |       |
 | VASP6 ACC     |  -                |  -    | -       |  ?  |
 
 
