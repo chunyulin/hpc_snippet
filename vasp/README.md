@@ -15,6 +15,7 @@
 
 
 ### Some compiling issues:
+* Set `export I_MPI_OFI_PROVIDER=mlk` to avoid segment fault with omp.
 * Segment fault with `-DUSE_PINNED_MEMORY` when compiled VASP 6 CUDA.
 * Segment fault when compiled VASP 6 with Scalapack.
 ```
