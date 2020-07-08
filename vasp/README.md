@@ -1,10 +1,10 @@
 ### Toolchains status
 
-|               | Intel             |  GNU lapack  | GNU_MKL | PGI |
-| ------------- | ----------------- | ----- | ------- | ---- |
-| VASP6 CPU     | segf (except r32) |  OK   | segf    |       |
-| VASP6 cuda    | OK                |  OK   | OK      |       |
-| VASP6 ACC     |  -                |  -    | -       |  ?  |
+|               | Intel             |  gnu/MKL | PGI |
+| ------------- | ----------------- | ----- | ------ |
+| VASP6 CPU     | segf (except r32) |  OK   |       |
+| VASP6 cuda    | OK                |  OK    |       |
+| VASP6 ACC     |  -                |  -      |  ?  |
 
 
 ### Compile VASP on Twnia-2
@@ -47,7 +47,7 @@ tion! Only ICC 15.0, ICC 16.0, ICC 17.0 and ICC 18.0 on Linux x86_64 are support
   #error -- unsupported ICC configuration! Only ICC 15.0, ICC 16.0, ICC 17.0 and ICC 18.0 on Linux x86_64 are supported!
 ```
 * VASP5 + CUDA-10.1 do not compile with sm7.0 as `warning : Instruction 'shfl' without '.sync' is deprecated`.
-* Contiguous pointer from non-contiguous target in Gcc8: See https://www.vasp.at/forum/viewtopic.php?f=2&t=17792
+* Contiguous pointer from non-contiguous target in Gcc 8. Use gcc 7 instead as it may be a compiler issue. See https://www.vasp.at/forum/viewtopic.php?f=2&t=17792
 * CUDA SM70 deprecate 'shfl' without '.sync': `warning : Instruction 'shfl' without '.sync' is deprecated since PTX ISA version 6.0 and will be discontinued in a future PTX ISA version`
 
 ### Reference:
