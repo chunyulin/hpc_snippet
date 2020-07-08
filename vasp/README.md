@@ -14,7 +14,8 @@
 * Job script example: ```vasp.slurm```
 
 
-### Some compiler issues:
+### Some compiling issues:
+* Segment fault with `-DUSE_PINNED_MEMORY` when compiled VASP 6 CUDA.
 * Segment fault when compiled VASP 6 with Scalapack.
 ```
 [gn1221:135789:0:135789] Caught signal 11 (Segmentation fault: address not mapped to object at address 0x440000f8)
