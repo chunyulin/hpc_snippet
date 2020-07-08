@@ -25,6 +25,8 @@ o VASP5 + CUDA-10.1 do not compile with sm7.0 as `warning : Instruction 'shfl' w
 
 o Contiguous pointer from non-contiguous target in Gcc8: See https://www.vasp.at/forum/viewtopic.php?f=2&t=17792
 
+o CUDA SM70 deprecate 'shfl' without '.sync': `warning : Instruction 'shfl' without '.sync' is deprecated since PTX ISA version 6.0 and will be discontinued in a future PTX ISA version`
+
 ### Reference:
 * [GPU_port_of_VASP](https://www.vasp.at/wiki/index.php/GPU_port_of_VASP)
 * [A commercial service of VASP by ExaByte.io](https://docs.exabyte.io/tutorials/dft/electronic/overview/)
