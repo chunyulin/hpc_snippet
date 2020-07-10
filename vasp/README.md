@@ -15,7 +15,7 @@
 
 
 ### Some compiling issues:
-* Set `export I_MPI_OFI_PROVIDER=mlk` to avoid segment fault with omp.
+* Set `export I_MPI_OFI_PROVIDER=mlk` and large enough `export OMP_STACKSIZE=128M` to avoid segment fault for gcc+mkl toolchain with OMP.
 * Segment fault with `-DUSE_PINNED_MEMORY` when compiled VASP 6 CUDA with gcc.
 * VASP 5 + CUDA-10.0 do not compile with intel/2020, use intel/2018 instead. 
 ```
