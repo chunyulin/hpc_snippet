@@ -1,0 +1,36 @@
+### Toolchains status
+
+|               | Intel             |  gnu/MKL | PGI |
+| ------------- | ----------------- | ----- | ------ |
+| VASP6 CPU     | intel/2020 |  gnu7/7.3.0  |       |
+| VASP6 cuda    | nvidia/cuda/10.1 |  nvidia/cuda/10.1    |       |
+| VASP6 ACC     | -             |  -      |  pgi/2020  |
+
+
+### Compile VASP on Twnia-2
+
+* ```makefile.include```: The makefile for VASP 5.4.4+patch.5.4.4.16052018.gz on Twnia-2
+* See ```gocom``` on how to compile the VASP on Twnia-2
+* Job script example: ```vasp.slurm```
+
+
+### Some compiling issues:
+* Set `export I_MPI_OFI_PROVIDER=mlk` to avoid segment fault with omp.
+* Segment fault with `-DUSE_PINNED_MEMORY` when compiled VASP 6 CUDA with gcc.
+* VASP 5 + CUDA-10.0 do not compile with intel/2020, use intel/2018 instead. 
+```
+/opt/ohpc/pub/nvidia/cuda/cuda-10.0/include/crt/host_config.h(89): error: #error directive: -- unsupported ICC configura
+tion! Only ICC 15.0, ICC 16.0, ICC 17.0 and ICC 18.0 on Linux x86_64 are supported!
+  #error -- unsupported ICC configuration! Only ICC 15.0, ICC 16.0, ICC 17.0 and ICC 18.0 on Linux x86_64 are supported!
+```
+* VASP5 + CUDA-10.1 do not compile with sm7.0 as `warning : Instruction 'shfl' without '.sync' is deprecated`.
+* Contiguous pointer from non-contiguous target in Gcc 8. Use gcc 7 instead as it may be a compiler issue. See https://www.vasp.at/forum/viewtopic.php?f=2&t=17792
+* CUDA SM70 deprecate 'shfl' without '.sync': `warning : Instruction 'shfl' without '.sync' is deprecated since PTX ISA version 6.0 and will be discontinued in a future PTX ISA version`
+
+### Reference:
+* [GPU_port_of_VASP](https://www.vasp.at/wiki/index.php/GPU_port_of_VASP)
+* [Porting VASP to GPU using OpenACC](https://on-demand.gputechconf.com/supercomputing/2019/pdf/sc1911-porting-vasp-to-gpus-using-openacc.pdf)
+
+
+
+
