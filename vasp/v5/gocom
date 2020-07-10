@@ -1,8 +1,7 @@
 module purge
-module load compiler/intel/2018
-module load nvidia/cuda/10.0
+module load intel/2018
+module load nvidia/cuda/10.0   #### Do not use cuda/10.1 as it deprecate some old function in sm7.0
 
-### VASP-5 only support std/ncl for GPU
 make gpu
 make gpu_ncl
 
