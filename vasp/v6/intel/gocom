@@ -1,0 +1,18 @@
+module purge
+module load intel/2020
+
+#===== Intel/2020 MKL version with CPU only
+ln -sf makefile.include.linux_intel makefile.include
+make std
+make gam
+make ncl
+
+#===== Intel/2020 MKL version with CUDA
+module purge
+module load intel/2018
+module load nvidia/cuda/10.1
+ln -sf makefile.include.linux_intel_cuda makefile.include
+make gpu
+make gpu_ncl
+
+

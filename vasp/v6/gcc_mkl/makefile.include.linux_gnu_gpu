@@ -1,0 +1,66 @@
+CPP_OPTIONS= -DHOST=\"TWCC-GNU-CUDA\" \
+             -DMPI -DMPI_BLOCK=8000 -Duse_collective \
+             -DCACHE_SIZE=4000 \
+             -Davoidalloc \
+             -Dvasp6 \
+             -Duse_bse_te \
+             -Dtbdyn \
+             -Dfock_dblbuf
+
+CPP        = gcc -E -P -C -w $*$(FUFFIX) >$*$(SUFFIX) $(CPP_OPTIONS)
+FC         = mpif90
+FCL        = mpif90
+FREE       = -ffree-form -ffree-line-length-none
+
+FFLAGS     = -w
+OFLAG      = -O2
+OFLAG_IN   = $(OFLAG)
+DEBUG      = -O0
+
+#==== MKL ====
+MKLROOT = /opt/ohpc/twcc/intel/2020/update1/compilers_and_libraries_2020.1.217/linux/mkl
+LLIBS      = -L${MKLROOT}/lib/intel64 -L${MKLROOT}/../compiler/lib/intel64 \
+             -Wl,-rpath,${MKLROOT}/lib/intel64 -Wl,-rpath,${MKLROOT}/../compiler/lib/intel64 \
+             -Wl,--no-as-needed -lmkl_gf_lp64 -lmkl_sequential -lmkl_core \
+             -lpthread -lm -ldl
+INCS      += -I$(MKLROOT)/include/fftw
+##-lmkl_scalapack_lp64 -lmkl_blacs_intelmpi_lp64 
+
+OBJECTS    = fftmpiw.o fftmpi_map.o  fftw3d.o  fft3dlib.o
+OBJECTS_O1 += fftw3d.o fftmpi.o fftmpiw.o
+OBJECTS_O2 += fft3dlib.o
+
+# For what used to be vasp.5.lib
+CPP_LIB    = $(CPP)
+FC_LIB     = $(FC)
+CC_LIB     = gcc
+CFLAGS_LIB = -O
+FFLAGS_LIB = -O1
+FREE_LIB   = $(FREE)
+
+OBJECTS_LIB= linpack_double.o getshmem.o
+
+# For the parser library
+CXX_PARS   = g++
+LLIBS     += -lstdc++
+
+# Normally no need to change this
+SRCDIR     = ../../src
+BINDIR     = ../../bin
+
+
+#================================================
+# GPU Stuff
+
+CPP_GPU    = -DCUDA_GPU -DCUFFT_MIN=28 -UscaLAPACK -Ufock_dblbuf -DRPROMU_CPROJ_OVERLAP -UUSE_PINNED_MEMORY
+OBJECTS_GPU= fftmpiw.o fftmpi_map.o fft3dlib.o fftw3d_gpu.o fftmpiw_gpu.o
+
+CC         = gcc
+CXX        = g++
+CFLAGS     = -fPIC -DADD_ -DGPUSHMEM=300 -DHAVE_CUBLAS
+CUDA_ROOT  ?= ${CUDA_HOME}
+NVCC       := $(CUDA_ROOT)/bin/nvcc
+CUDA_LIB   := -L$(CUDA_ROOT)/lib64 -lnvToolsExt -lcudart -lcuda -lcufft -lcublas
+
+GENCODE_ARCH    := -gencode=arch=compute_70,code=\"sm_70,compute_70\"
+MPI_INC    = /home/p00lcy01/local/gcc7/openmpi-4.0.4/include

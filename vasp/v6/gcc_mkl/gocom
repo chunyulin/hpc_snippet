@@ -1,0 +1,15 @@
+module purge
+module load gnu7/7.3.0
+source /home/p00lcy01/local/gcc7/openmpi-4.0.4/env.sh
+
+#====== GNU + MKL with CPU only
+ln -sf makefile.include.linux_gnu_mkl makefile.include
+make std
+#make gam
+#make ncl
+
+#====== GNU + MKL with CUDA
+#module load nvidia/cuda/10.1
+#ln -sf makefile.include.linux_gnu_gpu makefile.include
+#make gpu
+#make gpu_ncl
