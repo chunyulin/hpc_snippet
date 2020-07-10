@@ -30,7 +30,7 @@ tion! Only ICC 15.0, ICC 16.0, ICC 17.0 and ICC 18.0 on Linux x86_64 are support
 ### Reference:
 * [GPU_port_of_VASP](https://www.vasp.at/wiki/index.php/GPU_port_of_VASP)
 * [Porting VASP to GPU using OpenACC](https://on-demand.gputechconf.com/supercomputing/2019/pdf/sc1911-porting-vasp-to-gpus-using-openacc.pdf)
-
+* [Performance of Hybrid MPI/OpenMP VASP on Cray XC40 Based on Intel Knights Landing Many Integrated Core Architecture](https://opus4.kobv.de/opus4-zib/frontdoor/index/index/docId/6510)
 
 
 
