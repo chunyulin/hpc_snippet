@@ -1,10 +1,12 @@
 ### Toolchains status
 
-|               | Intel             |  gnu/MKL | PGI |
-| ------------- | ----------------- | ----- | ------ |
-| VASP6 CPU     | intel/2020 |  gnu7/7.3.0  |       |
-| VASP6 cuda    | nvidia/cuda/10.1 |  nvidia/cuda/10.1    |       |
-| VASP6 ACC     | -             |  -      |  pgi/2020  |
+|               | Intel              | gnu/MKL             | PGI       |
+| ------------- | ----------------   | ------------------- | ------    |
+| VASP6 CPU     | intel/2020         | gnu7/7.3.0          | -         |
+| VASP6 cuda    | +nvidia/cuda/10.1  | +nvidia/cuda/10.1    | -         |
+| VASP6 ACC     | -                  | -                   |  pgi/2020 |
+| VASP5 CPU     | intel/2018         | -                   | -         |
+| VASP5 cuda    | +nvidia/cuda/10.0  | -                   | -         |
 
 
 ### Compile VASP on Twnia-2
