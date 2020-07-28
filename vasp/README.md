@@ -1,3 +1,5 @@
+### Prelimary test result: [Link](https://docs.google.com/spreadsheets/d/1NJ5DjBFuAiLij8Sc5XTnC0TvKyMY-4YPJ8q7jN8ARbk/edit#gid=525954215) 
+
 ### Toolchains status
 
 |               | Intel              | gnu/MKL             | PGI       |
