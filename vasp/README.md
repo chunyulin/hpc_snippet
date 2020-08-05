@@ -1,4 +1,4 @@
-### Preliminary testing results: [Link](https://docs.google.com/spreadsheets/d/1NJ5DjBFuAiLij8Sc5XTnC0TvKyMY-4YPJ8q7jN8ARbk/edit#gid=525954215) 
+### Preliminary [testing results](https://docs.google.com/spreadsheets/d/1NJ5DjBFuAiLij8Sc5XTnC0TvKyMY-4YPJ8q7jN8ARbk/edit#gid=525954215) for [NVIDIA's colllecting case](https://github.com/smaintz-nv/gpu-vasp-files)
 
 ### Toolchains status
 
