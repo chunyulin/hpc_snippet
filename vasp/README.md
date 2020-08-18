@@ -1,16 +1,5 @@
 ### Preliminary [testing results](https://docs.google.com/spreadsheets/d/1NJ5DjBFuAiLij8Sc5XTnC0TvKyMY-4YPJ8q7jN8ARbk/edit#gid=525954215) for [NVIDIA's colllecting case](https://github.com/smaintz-nv/gpu-vasp-files)
 
-### Toolchains status
-
-|               | Intel              | gnu/MKL             | PGI       |
-| ------------- | ----------------   | ------------------- | ------    |
-| VASP6 CPU     | intel/2020         | gnu7/7.3.0          | -         |
-| VASP6 cuda    | +nvidia/cuda/10.1  | +nvidia/cuda/10.1    | -         |
-| VASP6 ACC     | -                  | -                   |  pgi/2020 |
-| VASP5 CPU     | intel/2018         | -                   | -         |
-| VASP5 cuda    | +nvidia/cuda/10.0  | -                   | -         |
-
-
 ### Compile VASP on Twnia-2
 
 * ```makefile.include```: The makefile for VASP 5.4.4+patch.5.4.4.16052018.gz on Twnia-2
