@@ -1,9 +1,8 @@
 ### Compile VASP.6 on Twnia-2
 
 * VASP 6 support GPU via OpenACC, which might have long-term support for VASP-GPU compared to CUDA version.
-* We prepared most of prerequests such as OpenMPI and Scalapack in ```/opt/ohpc/pkg/qchem```. So you could simply complile your own VASP binary by the provided script here.
-* To compile OpenACC version, please check out script in ```v6/pgi```: copy the vasp makefile ```makefile.include``` into your vasp scource and run compiltion script by ```. ./gocom```.
-* Job script example: ```vasp.slurm```.
+* We prepared most of prerequests such as OpenMPI and Scalapack in ```/opt/ohpc/pkg/qchem```. So you could simply complile your own VASP binary by copying ```makefile.include*``` into your vasp source folder and running the compilation script ```. ./gocom```.
+* Job submission script is in ```vasp.slurm```.
 
 
 ### Performance note
