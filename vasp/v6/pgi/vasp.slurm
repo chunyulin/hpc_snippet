@@ -1,8 +1,9 @@
 #!/bin/bash
-#SBATCH -A GOV109092
+#SBATCH -A GOV109092                        #### Change to your project ID
 #SBATCH -J vasp_acc
-#SBATCH --nodes=1 --cpus-per-task=4         #### Change the number of nodes. It's safe to use --cpus-per-task=4
-#SBATCH --ntasks-per-node=2 --gres=gpu:2    #### GPU number per node (can be 1-8).
+#SBATCH --nodes=1                           #### Number of nodes.
+#SBATCH --ntasks-per-node=2 --gres=gpu:2    #### Number of MPI tasks and GPU number per node. They are the same usually and can be from 1-8. 
+#SBATCH --cpus-per-task=4                   #### Threads per MPI task. It's safe to use 4 for vasp.
 
 module purge
 module load pgi/2020 nvidia/cuda/10.1
