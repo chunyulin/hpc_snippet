@@ -1,12 +1,5 @@
 ### Preliminary [testing results](https://docs.google.com/spreadsheets/d/1NJ5DjBFuAiLij8Sc5XTnC0TvKyMY-4YPJ8q7jN8ARbk/edit#gid=525954215) for [the three cases from NVIDIA](https://github.com/smaintz-nv/gpu-vasp-files)
 
-### Compile VASP on Twnia-2
-
-* ```makefile.include```: The makefile for VASP 5.4.4+patch.5.4.4.16052018.gz on Twnia-2
-* See ```gocom``` on how to compile the VASP on Twnia-2
-* Job script example: ```vasp.slurm```
-
-
 ### Some compiling issues:
 * Set `export I_MPI_OFI_PROVIDER=mlk` and large enough `export OMP_STACKSIZE=128M` to avoid segment fault for gcc+mkl toolchain with OMP.
 * Segment fault with `-DUSE_PINNED_MEMORY` when compiled VASP 6 CUDA with gcc.
