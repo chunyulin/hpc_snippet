@@ -1,0 +1,12 @@
+module purge
+module load pgi/2020
+module load nvidia/cuda/10.1
+
+source /opt/ohpc/pkg/qchem/pgi/openmpi-4.0.4/vasp.sh
+
+### OpenACC version
+ln -sf makefile.include.pgi_twcc makefile.include
+
+make std gam ncl
+
+

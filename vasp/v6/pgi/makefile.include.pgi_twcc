@@ -1,0 +1,72 @@
+# Precompiler options
+CPP_OPTIONS= -DHOST=\"TWCC-PGI-ACC\" \
+             -DMPI -DMPI_BLOCK=8000 -DMPI_INPLACE -Duse_collective \
+             -DCACHE_SIZE=4000 \
+             -DscaLAPACK \
+             -Davoidalloc \
+             -Dvasp6 \
+             -Duse_bse_te \
+             -Dtbdyn \
+             -Dqd_emulate \
+             -Dfock_dblbuf \
+             -D_OPENACC
+
+## Cannot pgf90 for ncclResult
+PGIFC      := pgfortran
+FC         = mpif90 -acc -ta=tesla:cc70
+FCL        = mpif90 -acc -ta=tesla:cc70 -pgc++libs
+
+FREE       = -Mfree
+FFLAGS     = -Mnoupcase -Mbackslash -Mlarge_arrays
+OFLAG      = -fast
+DEBUG      = -Mfree -O0 -traceback
+
+#==== NCCL ====
+CPP_OPTIONS += -DUSENCCL
+NCCLLIB = /opt/ohpc/pkg/qchem/nccl-2.7.8/lib
+LLIBS       += -L$(NCCLLIB) -lnccl -Wl,-rpath,$(NCCLLIB)
+
+#==== FFT / LAPACK ====
+FFTW       ?= /opt/ohpc/pkg/qchem/pgi/fftw-3.3.8
+LLIBS      += -L$(FFTW)/lib -lfftw3 -Wl,-rpath,$(FFTW)/lib
+INCS       += -I$(FFTW)/include
+CUDA       = -Mcudalib=cublas -Mcudalib=cufft -Mcudalib=cusolver -Mcuda
+LLIBS      += -llapack -lblas $(CUDA) -Mscalapack -L/opt/ohpc/pkg/qchem/pgi/openmpi-4.0.4/scalapack
+
+#==== QD ====
+CPP_OPTIONS += -Dqd_emulate
+QD          ?= /opt/ohpc/pkg/qchem/pgi/qd-2.3.22
+LLIBS       += -L$(QD)/lib -lqdmod -lqd -Wl,-rpath,$(QD)/lib
+INCS        += -I$(QD)/include/qd
+
+CPP        = $(PGIFC) -Mpreprocess -Mfree -Mextend -E $(CPP_OPTIONS) $*$(FUFFIX)  > $*$(SUFFIX)
+
+#=======================
+OBJECTS    = fftmpiw.o fftmpi_map.o fftw3d.o fft3dlib.o
+
+# Redefine the standard list of O1 and O2 objects
+SOURCE_O1  := pade_fit.o
+SOURCE_O2  := pead.o
+
+# Workaround a bug in PGI compiler up to and including version 18.10
+#OFLAG_IN   = -fast -ta=tesla:nollvm
+#SOURCE_IN  := xcspin.o
+
+
+# For what used to be vasp.5.lib
+CPP_LIB    = $(CPP)
+FC_LIB     = $(PGIFC)
+CC_LIB     = pgcc
+CFLAGS_LIB = -O
+FFLAGS_LIB = -O1 -Mfixed
+FREE_LIB   = $(FREE)
+
+
+OBJECTS_LIB= linpack_double.o getshmem.o
+
+# For the parser library
+CXX_PARS   = pgc++ --no_warnings
+
+# Normally no need to change this
+SRCDIR     = ../../src
+BINDIR     = ../../bin
