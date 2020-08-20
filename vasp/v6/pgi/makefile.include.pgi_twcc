@@ -11,7 +11,7 @@ CPP_OPTIONS= -DHOST=\"TWCC-PGI-ACC\" \
              -Dfock_dblbuf \
              -D_OPENACC
 
-## Cannot pgf90 for ncclResult
+## Using pgf90 complains about ncclResult staff...
 PGIFC      := pgfortran
 FC         = mpif90 -acc -ta=tesla:cc70
 FCL        = mpif90 -acc -ta=tesla:cc70 -pgc++libs
