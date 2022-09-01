@@ -10,7 +10,7 @@ source ~/myenv/bin/activate
 pip install numpy mpi4py
 deactivate
 ```
-- Prepare your mpi4py code. For example, `mpi.py` just calculating the average of inner product of two vector.
+- Prepare your mpi4py code. For example, `mpi.py` just calculating the sum of inner product of two vector and taking the average.
 - Submit the job to SLURM by `sbatch mpi4py.sub`.
 - You will notice that the walltime is reduced by increasing the MPI tasks.
 
