@@ -4,6 +4,11 @@
 ```
 module load biology/Python/3.9.5
 python3 -m venv ~/myenv
+
+module load compiler/intel/2020u4 OpenMPI/4.1.1
+source ~/myenv/bin/activate
+pip install numpy mpi4py
+deactivate
 ```
 - Prepare your mpi4py code. For example, `mpi.py` just calculating the average of inner product of two vector.
 - Submit the job to SLURM by `sbatch mpi4py.sub`.
