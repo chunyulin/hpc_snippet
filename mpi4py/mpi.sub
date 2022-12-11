@@ -8,7 +8,7 @@
 
 module purge
 module load biology/Python/3.9.5
-source ~/myenv/bin/activate
+source ~/sandbox/bin/activate
 module load compiler/intel/2020u4 OpenMPI/4.1.1
 
 export UCX_LOG_LEVEL=error
