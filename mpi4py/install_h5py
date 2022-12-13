@@ -1,0 +1,11 @@
+
+
+module purge
+module load biology/Python/3.9.5
+source ~/sandbox/bin/activate
+
+module load compiler/intel/2020u4 OpenMPI/4.1.1
+
+pip uninstall -y h5py
+
+CC=mpicc HDF5_DIR=/opt/ohpc/Taiwania3/libs/i2020-Ompi411/hdf5-1.12.2  HDF5_MPI=ON pip install --no-binary=h5py h5py
