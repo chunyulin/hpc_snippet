@@ -1,0 +1,96 @@
+# ====== Prepare the sample code ======
+[p00lcy01@lgn301 ~]$ git clone https://github.com/chunyulin/hpc_snippet.git
+[p00lcy01@lgn301 ~]$ cd hpc_snippet/mpi4py
+
+
+# ====== Build a new python env (skip this if you have one) ======
+[p00lcy01@lgn301 mpi4py]$ module purge    ## purge loaded modules to make sure there is no other preload module in, say, your ~/.bashrc
+[p00lcy01@lgn301 mpi4py]$ module load biology/Python/3.9.5
+[p00lcy01@lgn301 mpi4py]$ python3 -m venv tmp
+
+
+# ====== Install mpi4py under Intel compiler and OpenMPI ======
+[p00lcy01@lgn301 mpi4py]$ module load compiler/intel/2020u4 OpenMPI/4.1.1
+[p00lcy01@lgn301 mpi4py]$ source tmp/bin/activate
+(tmp) [p00lcy01@lgn301 mpi4py]$ pip install numpy mpi4py
+Collecting numpy
+  Downloading numpy-1.23.5-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (17.1 MB)
+     |████████████████████████████████| 17.1 MB 887 kB/s
+Collecting mpi4py
+  Downloading mpi4py-3.1.4.tar.gz (2.5 MB)
+     |████████████████████████████████| 2.5 MB 33.1 MB/s
+  Installing build dependencies ... done
+  Getting requirements to build wheel ... done
+    Preparing wheel metadata ... done
+Building wheels for collected packages: mpi4py
+  Building wheel for mpi4py (PEP 517) ... done
+  Created wheel for mpi4py: filename=mpi4py-3.1.4-cp39-cp39-linux_x86_64.whl size=2443622 sha256=751e84e45e4e36e05b413ebf0326dd1674500d0854efe41b53d4786fcc73e01f
+  Stored in directory: /home/p00lcy01/.cache/pip/wheels/db/81/9f/43a031fce121c845baca1c5d9a1468cad98208286aa2832de9
+Successfully built mpi4py
+Installing collected packages: numpy, mpi4py
+Successfully installed mpi4py-3.1.4 numpy-1.23.5
+WARNING: You are using pip version 21.1.1; however, version 22.3.1 is available.
+You should consider upgrading via the '/home/p00lcy01/hpc_snippet/mpi4py/tmp/bin/python3 -m pip install --upgrade pip' command.
+
+
+# ====== Install h5py under system HDF-1.12.1 ======
+(tmp) [p00lcy01@lgn301 mpi4py]$ CC=mpicc HDF5_DIR=/opt/ohpc/Taiwania3/libs/i2020-Ompi411/hdf5-1.12.2  HDF5_MPI=ON pip install --no-binary=h5py h5py
+Collecting h5py
+  Using cached h5py-3.7.0.tar.gz (392 kB)
+  Installing build dependencies ... done
+  Getting requirements to build wheel ... done
+  Installing backend dependencies ... done
+    Preparing wheel metadata ... done
+Requirement already satisfied: mpi4py>=3.0.2 in ./tmp/lib/python3.9/site-packages (from h5py) (3.1.4)
+Requirement already satisfied: numpy>=1.14.5 in ./tmp/lib/python3.9/site-packages (from h5py) (1.23.5)
+Building wheels for collected packages: h5py
+  Building wheel for h5py (PEP 517) ... done
+  Created wheel for h5py: filename=h5py-3.7.0-cp39-cp39-linux_x86_64.whl size=4095703 sha256=fa9616fb58f0bf9318d2a835c32f15d3a5b87abb0de809a60da506eaac3b2a57
+  Stored in directory: /home/p00lcy01/.cache/pip/wheels/1d/57/48/1e8f14a78579467947fa114619d17aed107a39b8375347a02a
+Successfully built h5py
+Installing collected packages: h5py
+Successfully installed h5py-3.7.0
+WARNING: You are using pip version 21.1.1; however, version 22.3.1 is available.
+You should consider upgrading via the '/home/p00lcy01/hpc_snippet/mpi4py/tmp/bin/python3 -m pip install --upgrade pip' command.
+
+
+# ====== Submit a sample job ======
+(tmp) [p00lcy01@lgn301 mpi4py]$ sbatch h5mpi.sub
+Submitted batch job 3759997
+
+
+# ====== Check h5py has been linked to the correct MPI/HDF libraries ======
+(tmp) [p00lcy01@lgn301 mpi4py]$ ldd tmp/lib/python3.9/site-packages/h5py/defs.cpython-39-x86_64-linux-gnu.so
+        linux-vdso.so.1 =>  (0x00007ffc207a5000)
+        libhdf5.so.200 => /opt/ohpc/Taiwania3/libs/i2020-Ompi411/hdf5-1.12.2/lib/libhdf5.so.200 (0x00002ab66ad30000)
+        libhdf5_hl.so.200 => /opt/ohpc/Taiwania3/libs/i2020-Ompi411/hdf5-1.12.2/lib/libhdf5_hl.so.200 (0x00002ab66b4ae000)
+        libmpi.so.40 => /opt/ohpc/Taiwania3/libs/intel-2020/openmpi-4.1.1/lib64/libmpi.so.40 (0x00002ab66b6d8000)
+        libimf.so => /opt/ohpc/Taiwania3/pkg/intel/2020/compilers_and_libraries_2020.4.304/linux/compiler/lib/intel64/libimf.so (0x00002ab66ba05000)
+        libsvml.so => /opt/ohpc/Taiwania3/pkg/intel/2020/compilers_and_libraries_2020.4.304/linux/compiler/lib/intel64/libsvml.so (0x00002ab66c088000)
+        libirng.so => /opt/ohpc/Taiwania3/pkg/intel/2020/compilers_and_libraries_2020.4.304/linux/compiler/lib/intel64/libirng.so (0x00002ab66db58000)
+        libm.so.6 => /usr/lib64/libm.so.6 (0x00002ab66dec3000)
+        libgcc_s.so.1 => /usr/lib64/libgcc_s.so.1 (0x00002ab66e1c5000)
+        libintlc.so.5 => /opt/ohpc/Taiwania3/pkg/intel/2020/compilers_and_libraries_2020.4.304/linux/compiler/lib/intel64/libintlc.so.5 (0x00002ab66e3db000)
+        libpthread.so.0 => /usr/lib64/libpthread.so.0 (0x00002ab66e653000)
+        libc.so.6 => /usr/lib64/libc.so.6 (0x00002ab66e86f000)
+        libdl.so.2 => /usr/lib64/libdl.so.2 (0x00002ab66ec3d000)
+        libz.so.1 => /usr/lib64/libz.so.1 (0x00002ab66ee41000)
+        libopen-rte.so.40 => /opt/ohpc/Taiwania3/libs/intel-2020/openmpi-4.1.1/lib64/libopen-rte.so.40 (0x00002ab66f057000)
+        libopen-orted-mpir.so => /opt/ohpc/Taiwania3/libs/intel-2020/openmpi-4.1.1/lib64/libopen-orted-mpir.so (0x00002ab66f32b000)
+        libopen-pal.so.40 => /opt/ohpc/Taiwania3/libs/intel-2020/openmpi-4.1.1/lib64/libopen-pal.so.40 (0x00002ab66f52d000)
+        librt.so.1 => /lib64/librt.so.1 (0x00002ab66f803000)
+        libutil.so.1 => /lib64/libutil.so.1 (0x00002ab66fa0b000)
+        libhwloc.so.15 => /opt/ohpc/Taiwania3/libs/intel-2020/openmpi-4.1.1/lib64/libhwloc.so.15 (0x00002ab66fc0e000)
+        libudev.so.1 => /lib64/libudev.so.1 (0x00002ab66fe88000)
+        libpciaccess.so.0 => /lib64/libpciaccess.so.0 (0x00002ab67009e000)
+        libxml2.so.2 => /lib64/libxml2.so.2 (0x00002ab6702a8000)
+        libevent_core-2.0.so.5 => /lib64/libevent_core-2.0.so.5 (0x00002ab670612000)
+        libevent_pthreads-2.0.so.5 => /lib64/libevent_pthreads-2.0.so.5 (0x00002ab67083d000)
+        /lib64/ld-linux-x86-64.so.2 (0x00002ab66a8a6000)
+        libcap.so.2 => /lib64/libcap.so.2 (0x00002ab670a40000)
+        libdw.so.1 => /lib64/libdw.so.1 (0x00002ab670c45000)
+        liblzma.so.5 => /lib64/liblzma.so.5 (0x00002ab670e96000)
+        libattr.so.1 => /lib64/libattr.so.1 (0x00002ab6710bc000)
+        libelf.so.1 => /lib64/libelf.so.1 (0x00002ab6712c1000)
+        libbz2.so.1 => /lib64/libbz2.so.1 (0x00002ab6714d9000)
+(tmp) [p00lcy01@lgn301 mpi4py]$
