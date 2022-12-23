@@ -1,0 +1,14 @@
+module purge
+module load python3/3.5.6
+module load intel/2018_u1
+
+export PETSC_DIR=/pkg/kagra/intel/petsc-3.18.2
+export PKG_CONFIG_PATH=${PETSC_DIR}/lib/pkgconfig:${PKG_CONFIG_PATH}
+export LD_LIBRARY_PATH=${PETSC_DIR}/lib:${LD_LIBRARY_PATH}
+
+PAR="`pkg-config petsc --cflags` `pkg-config petsc --libs`"
+COM="mpiicc ex50.c -o ex50 ${PAR}"
+
+echo ${COM}
+
+${COM}
