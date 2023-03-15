@@ -1,0 +1,5 @@
+module purge
+module load compiler/intel/2022 IntelMPI/2021.6
+
+mpiicpc 0_hello.cpp -o 0_hello
+

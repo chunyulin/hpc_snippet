@@ -1,0 +1,15 @@
+#! /bin/bash
+#SBATCH -A GOV109092
+#SBATCH -J mpitest
+#SBATCH --nodes=2 --ntasks-per-node=2 --cpus-per-task=1
+#SBATCH --time=0:10:00
+#SBATCH --partition=ctest
+
+module purge
+module load compiler/intel/2022 IntelMPI/2021.6
+
+MPIRUN="mpiexec.hydra -print-rank-map -np ${SLURM_NTASKS}"
+
+${MPIRUN} ./0_hello
+
+
