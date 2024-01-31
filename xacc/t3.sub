@@ -1,0 +1,32 @@
+#! /bin/bash
+#SBATCH -A GOV109092
+#SBATCH -p ctest
+###SBATCH -p ct56 ct224 560 ct2k
+#SBATCH -J mps
+###SBATCH --nodes=2 --ntasks-per-node=2 --cpus-per-task=28
+##SBATCH --nodes=1 --ntasks-per-node=1 --cpus-per-task=56
+#SBATCH --tasks=1 --ntasks-per-node=1 --cpus-per-task=28
+
+source /home/p00lcy01/QSim/env_exatn_blas.sh
+
+export OMP_PLACES=sockets
+export OMP_DYNAMIC=FALSE
+VARS="SLURM_JOB_ID SLURM_NTASKS SLURM_NNODES SLURM_NTASKS_PER_NODE SLURM_CPUS_PER_TASK SLURM_TASK_PID"
+for v in ${VARS}; do
+   echo " $v = ${!v}"
+done
+
+nq=50
+for((l=4;l<=12;l+=4));do
+ for((d=3;d<=64;d+=5));do
+  for i in {1..8}; do
+   output="$(python3 -m memory_profiler --precision 8 profile_tnqvm.py -n $nq -l $l -d $d -i tnqvm:exatn-mps)"
+   read -a memvar <<< $(echo "${output}" | grep 'qpu.execute')
+   read -a timevar <<< $(echo "${output}" | grep 'Time_in_sec:')
+   echo "$l, $d, ${memvar[3]}, ${timevar[1]}" | tee -a exatn-mps-d2_c28_${r}_layers.csv;
+  done
+ done
+done
+
+sstat ${SLURM_JOB_ID} -a --format="JobID,NTasks,MinCPU,AveCPU,MaxDiskRead,AveDiskRead,MaxDiskWrite,AveDiskWrite,MaxRSS,MaxVMSize"
+echo "--- Total Walltime: $((SECONDS)) sec."
