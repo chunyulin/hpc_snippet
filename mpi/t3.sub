@@ -1,15 +1,20 @@
 #! /bin/bash
 #SBATCH -A GOV109092
 #SBATCH -J mpitest
-#SBATCH --nodes=2 --ntasks-per-node=2 --cpus-per-task=1
-#SBATCH --time=0:10:00
-#SBATCH --partition=ctest
+#SBATCH --nodes=1 --ntasks-per-node=1 --cpus-per-task=56
+#SBATCH -t 0:10:00 -p ctest
 
 module purge
 module load compiler/intel/2022 IntelMPI/2021.6
+#MPIRUN="mpiexec.hydra -print-rank-map -np ${SLURM_NTASKS}"
+#${MPIRUN} ./0_hello
 
-MPIRUN="mpiexec.hydra -print-rank-map -np ${SLURM_NTASKS}"
 
-${MPIRUN} ./0_hello
+export OMP_PROC_BIND=close
+export OMP_DYNAMIC=false
+for c in 56 32 28 16 8 4 2 1; do
+  export OMP_NUM_THREADS=$c
+  ./omp_f
+done
 
 

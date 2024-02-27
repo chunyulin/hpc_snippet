@@ -10,3 +10,11 @@ sbatch t3.sub
 ```
 
 See [slurm-4707421.out](https://github.com/chunyulin/hpc_snippet/blob/master/mpi/slurm-4707421.out) for the example output.
+
+
+# OMP examples
+
+Compile with `. ./gocom`, and submit with `sbatch t3.sub`.
+
+See [slurm-8983686.out](https://github.com/chunyulin/hpc_snippet/blob/master/mpi/slurm-8983686.out) for the example output.
+

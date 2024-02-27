@@ -3,3 +3,4 @@ module load compiler/intel/2022 IntelMPI/2021.6
 
 mpiicpc 0_hello.cpp -o 0_hello
 
+ifort -O3 -qopenmp omp_f.f90 -o omp_f
