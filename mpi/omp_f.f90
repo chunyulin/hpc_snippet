@@ -57,8 +57,3 @@ t3= omp_get_wtime()
 print '(A,I3,A,3E9.2,A,E11.4)', "#Cores " , omp_get_max_threads(), "  Walltime/secs: ", t1-t0, t2-t1, t3-t2,"    Check: ", tmp
 
 end program
-
-
-
-
-! To avoid using temp variable, see https://stackoverflow.com/questions/14420740/how-to-use-reduction-on-an-array-in-fortran
