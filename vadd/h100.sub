@@ -1,0 +1,37 @@
+#!/bin/bash
+#SBATCH -A GOV113080
+#SBATCH -J vecadd
+#SBATCH -t 00:30:00 --partition=dev
+#SBATCH --nodes=1 --ntasks-per-node=1 --cpus-per-task=12
+#SBATCH --gres=gpu:1
+##SBATCH --nodelist=hgpn[15-17]
+#SBATCH --nodelist=hgpn[06-10]
+
+EXE=VecAdd
+N_EXPERIMENT=1
+
+ml purge
+ml nvhpc-hpcx-cuda12/24.7
+
+hostname
+ml
+numactl -H
+lscpu
+
+echo;echo "====== bind to none ======"
+for i in $(seq 1 $N_EXPERIMENT);
+do
+    ./$EXE
+done
+
+
+
+echo;echo "====== bind to cores ======"
+export OMP_PLACES=cores
+export OMP_PROC_BIND=close
+
+for i in $(seq 1 $N_EXPERIMENT);
+do
+    ./$EXE
+done
+

@@ -1,0 +1,4 @@
+ml purge
+ml nvhpc-hpcx-cuda12/24.7
+
+make
