@@ -1,0 +1,207 @@
+[Node: DGX101 0] Global rank 6/16 using GPU 6
+[Node: DGX102 1] Global rank 10/16 using GPU 2
+[Node: DGX101 0] Global rank 4/16 using GPU 4
+[Node: DGX102 1] Global rank 8/16 using GPU 0
+[Node: DGX101 0] Global rank 1/16 using GPU 1
+Backend:  nccl
+[Node: DGX101 0] Global rank 0/16 using GPU 0
+[Node: DGX101 0] Global rank 2/16 using GPU 2
+[Node: DGX102 1] Global rank 11/16 using GPU 3
+[Node: DGX102 1] Global rank 14/16 using GPU 6
+[Node: DGX102 1] Global rank 9/16 using GPU 1
+[Node: DGX102 1] Global rank 13/16 using GPU 5
+[Node: DGX101 0] Global rank 7/16 using GPU 7
+[Node: DGX101 0] Global rank 3/16 using GPU 3
+[Node: DGX102 1] Global rank 15/16 using GPU 7
+[Node: DGX102 1] Global rank 12/16 using GPU 4
+[Node: DGX101 0] Global rank 5/16 using GPU 5
+Testing dist_sendrecv ----------------------------------------------------
+Blocking P2P: Rank 9 received 9.0 from rank 8
+Blocking P2P: Rank 3 received 3.0 from rank 2
+Blocking P2P: Rank 15 received 15.0 from rank 14
+Blocking P2P: Rank 5 received 5.0 from rank 4
+Blocking P2P: Rank 13 received 13.0 from rank 12
+Blocking P2P: Rank 11 received 11.0 from rank 10
+Blocking P2P: Rank 1 received 1.0 from rank 0
+Blocking P2P: Rank 7 received 7.0 from rank 6
+Blocking P2P: Rank 2 received 2.0 from rank 1
+Blocking P2P: Rank 6 received 6.0 from rank 5
+Blocking P2P: Rank 10 received 10.0 from rank 9
+Blocking P2P: Rank 14 received 14.0 from rank 13
+Blocking P2P: Rank 8 received 8.0 from rank 7
+Blocking P2P: Rank 12 received 12.0 from rank 11
+Blocking P2P: Rank 4 received 4.0 from rank 3
+Blocking P2P: Rank 0 received 16.0 from rank 15
+
+
+
+
+Testing dist_isendrecv ----------------------------------------------------
+Non-blocking P2P: Rank 9 received 9.0 from rank 8Non-blocking P2P: Rank 10 received 10.0 from rank 9
+Non-blocking P2P: Rank 6 received 6.0 from rank 5
+Non-blocking P2P: Rank 3 received 3.0 from rank 2
+Non-blocking P2P: Rank 0 received 16.0 from rank 15
+Non-blocking P2P: Rank 11 received 11.0 from rank 10
+Non-blocking P2P: Rank 7 received 7.0 from rank 6
+Non-blocking P2P: Rank 15 received 15.0 from rank 14
+
+Non-blocking P2P: Rank 1 received 1.0 from rank 0
+Non-blocking P2P: Rank 8 received 8.0 from rank 7
+Non-blocking P2P: Rank 2 received 2.0 from rank 1
+Non-blocking P2P: Rank 14 received 14.0 from rank 13
+Non-blocking P2P: Rank 5 received 5.0 from rank 4
+Non-blocking P2P: Rank 12 received 12.0 from rank 11
+Non-blocking P2P: Rank 4 received 4.0 from rank 3
+Non-blocking P2P: Rank 13 received 13.0 from rank 12
+
+
+
+
+Testing dist_scatter ----------------------------------------------------
+Scatter, rank: 1, before scatter: tensor([0.], device='cuda:1') after scatter: tensor([2.], device='cuda:1')
+Scatter, rank: 3, before scatter: tensor([0.], device='cuda:3') after scatter: tensor([4.], device='cuda:3')
+Scatter, rank: 7, before scatter: tensor([0.], device='cuda:7') after scatter: tensor([8.], device='cuda:7')
+Scatter, rank: 0, before scatter: tensor([0.], device='cuda:0') after scatter: tensor([1.], device='cuda:0')
+Scatter, rank: 6, before scatter: tensor([0.], device='cuda:6') after scatter: tensor([7.], device='cuda:6')Scatter, rank: 5, before scatter: tensor([0.], device='cuda:5') after scatter: tensor([6.], device='cuda:5')
+Scatter, rank: 4, before scatter: tensor([0.], device='cuda:4') after scatter: tensor([5.], device='cuda:4')
+Scatter, rank: 13, before scatter: tensor([0.], device='cuda:5') after scatter: tensor([14.], device='cuda:5')Scatter, rank: 12, before scatter: tensor([0.], device='cuda:4') after scatter: tensor([13.], device='cuda:4')
+Scatter, rank: 8, before scatter: tensor([0.], device='cuda:0') after scatter: tensor([9.], device='cuda:0')
+
+
+Scatter, rank: 11, before scatter: tensor([0.], device='cuda:3') after scatter: tensor([12.], device='cuda:3')Scatter, rank: 9, before scatter: tensor([0.], device='cuda:1') after scatter: tensor([10.], device='cuda:1')
+
+Scatter, rank: 2, before scatter: tensor([0.], device='cuda:2') after scatter: tensor([3.], device='cuda:2')
+Scatter, rank: 10, before scatter: tensor([0.], device='cuda:2') after scatter: tensor([11.], device='cuda:2')Scatter, rank: 14, before scatter: tensor([0.], device='cuda:6') after scatter: tensor([15.], device='cuda:6')
+
+Scatter, rank: 15, before scatter: tensor([0.], device='cuda:7') after scatter: tensor([16.], device='cuda:7')
+
+
+
+
+Testing dist_reducescatter ----------------------------------------------------
+Reduce_scatter, rank: 6, old_output: tensor([0., 0.], device='cuda:6'), outputr: tensor([112.,  32.], device='cuda:6')Reduce_scatter, rank: 0, old_output: tensor([0., 0.], device='cuda:0'), outputr: tensor([16., 32.], device='cuda:0')
+
+Reduce_scatter, rank: 9, old_output: tensor([-1.7671e-33,  7.5376e-42], device='cuda:1'), outputr: tensor([160.,  32.], device='cuda:1')
+Reduce_scatter, rank: 15, old_output: tensor([2.1183e+18, 7.3162e-42], device='cuda:7'), outputr: tensor([256.,  32.], device='cuda:7')
+Reduce_scatter, rank: 2, old_output: tensor([-3.1984e+10,  7.5474e-42], device='cuda:2'), outputr: tensor([48., 32.], device='cuda:2')Reduce_scatter, rank: 1, old_output: tensor([0., 0.], device='cuda:1'), outputr: tensor([32., 32.], device='cuda:1')
+
+Reduce_scatter, rank: 13, old_output: tensor([3.5118e+30, 7.4647e-42], device='cuda:5'), outputr: tensor([224.,  32.], device='cuda:5')
+Reduce_scatter, rank: 4, old_output: tensor([-1.0260e-04,  7.4283e-42], device='cuda:4'), outputr: tensor([80., 32.], device='cuda:4')
+Reduce_scatter, rank: 12, old_output: tensor([0., 0.], device='cuda:4'), outputr: tensor([208.,  32.], device='cuda:4')Reduce_scatter, rank: 11, old_output: tensor([0., 0.], device='cuda:3'), outputr: tensor([192.,  32.], device='cuda:3')
+
+Reduce_scatter, rank: 10, old_output: tensor([-3.3118e-18,  7.5712e-42], device='cuda:2'), outputr: tensor([176.,  32.], device='cuda:2')Reduce_scatter, rank: 8, old_output: tensor([9.2386e-03, 7.4451e-42], device='cuda:0'), outputr: tensor([144.,  32.], device='cuda:0')Reduce_scatter, rank: 14, old_output: tensor([-2.7590e+31,  7.4059e-42], device='cuda:6'), outputr: tensor([240.,  32.], device='cuda:6')
+Reduce_scatter, rank: 7, old_output: tensor([0., 0.], device='cuda:7'), outputr: tensor([128.,  32.], device='cuda:7')Reduce_scatter, rank: 5, old_output: tensor([6.3837e+03, 7.5530e-42], device='cuda:5'), outputr: tensor([96., 32.], device='cuda:5')Reduce_scatter, rank: 3, old_output: tensor([2.9977e+09, 7.5894e-42], device='cuda:3'), outputr: tensor([64., 32.], device='cuda:3')
+
+
+
+
+
+
+
+
+Testing dist_reduce ----------------------------------------------------
+Reduce, rank: 3, before reduce: tensor([4.], device='cuda:3') after reduce: tensor([4.], device='cuda:3')Reduce, rank: 7, before reduce: tensor([8.], device='cuda:7') after reduce: tensor([8.], device='cuda:7')
+Reduce, rank: 6, before reduce: tensor([7.], device='cuda:6') after reduce: tensor([7.], device='cuda:6')
+Reduce, rank: 8, before reduce: tensor([9.], device='cuda:0') after reduce: tensor([9.], device='cuda:0')Reduce, rank: 11, before reduce: tensor([12.], device='cuda:3') after reduce: tensor([12.], device='cuda:3')
+
+Reduce, rank: 14, before reduce: tensor([15.], device='cuda:6') after reduce: tensor([15.], device='cuda:6')
+Reduce, rank: 5, before reduce: tensor([6.], device='cuda:5') after reduce: tensor([6.], device='cuda:5')
+
+Reduce, rank: 2, before reduce: tensor([3.], device='cuda:2') after reduce: tensor([3.], device='cuda:2')
+Reduce, rank: 1, before reduce: tensor([2.], device='cuda:1') after reduce: tensor([2.], device='cuda:1')Reduce, rank: 0, before reduce: tensor([1.], device='cuda:0') after reduce: tensor([136.], device='cuda:0')
+Reduce, rank: 4, before reduce: tensor([5.], device='cuda:4') after reduce: tensor([5.], device='cuda:4')
+
+Reduce, rank: 12, before reduce: tensor([13.], device='cuda:4') after reduce: tensor([13.], device='cuda:4')Reduce, rank: 9, before reduce: tensor([10.], device='cuda:1') after reduce: tensor([10.], device='cuda:1')
+
+Reduce, rank: 13, before reduce: tensor([14.], device='cuda:5') after reduce: tensor([14.], device='cuda:5')Reduce, rank: 10, before reduce: tensor([11.], device='cuda:2') after reduce: tensor([11.], device='cuda:2')
+
+Reduce, rank: 15, before reduce: tensor([16.], device='cuda:7') after reduce: tensor([16.], device='cuda:7')
+
+
+
+
+Testing dist_allreduce ----------------------------------------------------
+All_reduce, rank: 7, before allreduce tensor: tensor([ 8, 71], device='cuda:7'), after allreduce tensor: tensor([ 136, 1216], device='cuda:7')All_reduce, rank: 6, before allreduce tensor: tensor([ 7, 61], device='cuda:6'), after allreduce tensor: tensor([ 136, 1216], device='cuda:6')
+
+All_reduce, rank: 11, before allreduce tensor: tensor([ 12, 111], device='cuda:3'), after allreduce tensor: tensor([ 136, 1216], device='cuda:3')All_reduce, rank: 13, before allreduce tensor: tensor([ 14, 131], device='cuda:5'), after allreduce tensor: tensor([ 136, 1216], device='cuda:5')
+
+All_reduce, rank: 5, before allreduce tensor: tensor([ 6, 51], device='cuda:5'), after allreduce tensor: tensor([ 136, 1216], device='cuda:5')All_reduce, rank: 4, before allreduce tensor: tensor([ 5, 41], device='cuda:4'), after allreduce tensor: tensor([ 136, 1216], device='cuda:4')
+
+All_reduce, rank: 0, before allreduce tensor: tensor([1, 1], device='cuda:0'), after allreduce tensor: tensor([ 136, 1216], device='cuda:0')
+All_reduce, rank: 10, before allreduce tensor: tensor([ 11, 101], device='cuda:2'), after allreduce tensor: tensor([ 136, 1216], device='cuda:2')
+All_reduce, rank: 12, before allreduce tensor: tensor([ 13, 121], device='cuda:4'), after allreduce tensor: tensor([ 136, 1216], device='cuda:4')
+All_reduce, rank: 1, before allreduce tensor: tensor([ 2, 11], device='cuda:1'), after allreduce tensor: tensor([ 136, 1216], device='cuda:1')
+All_reduce, rank: 8, before allreduce tensor: tensor([ 9, 81], device='cuda:0'), after allreduce tensor: tensor([ 136, 1216], device='cuda:0')All_reduce, rank: 15, before allreduce tensor: tensor([ 16, 151], device='cuda:7'), after allreduce tensor: tensor([ 136, 1216], device='cuda:7')
+All_reduce, rank: 14, before allreduce tensor: tensor([ 15, 141], device='cuda:6'), after allreduce tensor: tensor([ 136, 1216], device='cuda:6')
+All_reduce, rank: 2, before allreduce tensor: tensor([ 3, 21], device='cuda:2'), after allreduce tensor: tensor([ 136, 1216], device='cuda:2')All_reduce, rank: 3, before allreduce tensor: tensor([ 4, 31], device='cuda:3'), after allreduce tensor: tensor([ 136, 1216], device='cuda:3')
+
+
+All_reduce, rank: 9, before allreduce tensor: tensor([10, 91], device='cuda:1'), after allreduce tensor: tensor([ 136, 1216], device='cuda:1')
+
+
+
+
+Testing dist_gather ----------------------------------------------------
+Gather, rank: 15, before gather: tensor([16., 10.], device='cuda:7') after gather: None
+Gather, rank: 13, before gather: tensor([14., 10.], device='cuda:5') after gather: None
+Gather, rank: 14, before gather: tensor([15., 10.], device='cuda:6') after gather: None
+Gather, rank: 12, before gather: tensor([13., 10.], device='cuda:4') after gather: None
+Gather, rank: 11, before gather: tensor([12., 10.], device='cuda:3') after gather: None
+Gather, rank: 10, before gather: tensor([11., 10.], device='cuda:2') after gather: None
+Gather, rank: 9, before gather: tensor([10., 10.], device='cuda:1') after gather: None
+Gather, rank: 7, before gather: tensor([ 8., 10.], device='cuda:7') after gather: None
+Gather, rank: 8, before gather: tensor([ 9., 10.], device='cuda:0') after gather: None
+Gather, rank: 6, before gather: tensor([ 7., 10.], device='cuda:6') after gather: None
+Gather, rank: 5, before gather: tensor([ 6., 10.], device='cuda:5') after gather: None
+Gather, rank: 4, before gather: tensor([ 5., 10.], device='cuda:4') after gather: NoneGather, rank: 3, before gather: tensor([ 4., 10.], device='cuda:3') after gather: NoneGather, rank: 2, before gather: tensor([ 3., 10.], device='cuda:2') after gather: None
+
+
+Gather, rank: 0, before gather: tensor([ 1., 10.], device='cuda:0') after gather: [tensor([ 1., 10.], device='cuda:0'), tensor([0., 0.], device='cuda:0'), tensor([ 3., 10.], device='cuda:0'), tensor([ 4., 10.], device='cuda:0'), tensor([ 5., 10.], device='cuda:0'), tensor([ 6., 10.], device='cuda:0'), tensor([ 7., 10.], device='cuda:0'), tensor([ 8., 10.], device='cuda:0'), tensor([ 9., 10.], device='cuda:0'), tensor([10., 10.], device='cuda:0'), tensor([11., 10.], device='cuda:0'), tensor([12., 10.], device='cuda:0'), tensor([13., 10.], device='cuda:0'), tensor([14., 10.], device='cuda:0'), tensor([15., 10.], device='cuda:0'), tensor([16., 10.], device='cuda:0')]
+Gather, rank: 1, before gather: tensor([ 2., 10.], device='cuda:1') after gather: None
+
+
+
+
+Testing dist_allgather ----------------------------------------------------
+Allgather, rank: 3, input_tensor: tensor([3], device='cuda:3'), output: [tensor([0], device='cuda:3'), tensor([1], device='cuda:3'), tensor([2], device='cuda:3'), tensor([3], device='cuda:3'), tensor([4], device='cuda:3'), tensor([5], device='cuda:3'), tensor([6], device='cuda:3'), tensor([7], device='cuda:3'), tensor([8], device='cuda:3'), tensor([9], device='cuda:3'), tensor([10], device='cuda:3'), tensor([11], device='cuda:3'), tensor([12], device='cuda:3'), tensor([13], device='cuda:3'), tensor([14], device='cuda:3'), tensor([15], device='cuda:3')]Allgather, rank: 6, input_tensor: tensor([6], device='cuda:6'), output: [tensor([0], device='cuda:6'), tensor([1], device='cuda:6'), tensor([2], device='cuda:6'), tensor([3], device='cuda:6'), tensor([4], device='cuda:6'), tensor([5], device='cuda:6'), tensor([6], device='cuda:6'), tensor([7], device='cuda:6'), tensor([8], device='cuda:6'), tensor([9], device='cuda:6'), tensor([10], device='cuda:6'), tensor([11], device='cuda:6'), tensor([12], device='cuda:6'), tensor([13], device='cuda:6'), tensor([14], device='cuda:6'), tensor([15], device='cuda:6')]Allgather, rank: 1, input_tensor: tensor([1], device='cuda:1'), output: [tensor([0], device='cuda:1'), tensor([1], device='cuda:1'), tensor([2], device='cuda:1'), tensor([3], device='cuda:1'), tensor([4], device='cuda:1'), tensor([5], device='cuda:1'), tensor([6], device='cuda:1'), tensor([7], device='cuda:1'), tensor([8], device='cuda:1'), tensor([9], device='cuda:1'), tensor([10], device='cuda:1'), tensor([11], device='cuda:1'), tensor([12], device='cuda:1'), tensor([13], device='cuda:1'), tensor([14], device='cuda:1'), tensor([15], device='cuda:1')]
+Allgather, rank: 13, input_tensor: tensor([13], device='cuda:5'), output: [tensor([0], device='cuda:5'), tensor([1], device='cuda:5'), tensor([2], device='cuda:5'), tensor([3], device='cuda:5'), tensor([4], device='cuda:5'), tensor([5], device='cuda:5'), tensor([6], device='cuda:5'), tensor([7], device='cuda:5'), tensor([8], device='cuda:5'), tensor([9], device='cuda:5'), tensor([10], device='cuda:5'), tensor([11], device='cuda:5'), tensor([12], device='cuda:5'), tensor([13], device='cuda:5'), tensor([14], device='cuda:5'), tensor([15], device='cuda:5')]Allgather, rank: 10, input_tensor: tensor([10], device='cuda:2'), output: [tensor([0], device='cuda:2'), tensor([1], device='cuda:2'), tensor([2], device='cuda:2'), tensor([3], device='cuda:2'), tensor([4], device='cuda:2'), tensor([5], device='cuda:2'), tensor([6], device='cuda:2'), tensor([7], device='cuda:2'), tensor([8], device='cuda:2'), tensor([9], device='cuda:2'), tensor([10], device='cuda:2'), tensor([11], device='cuda:2'), tensor([12], device='cuda:2Allgather, rank: 5, input_tensor: tensor([5], device='cuda:5'), output: [tensor([0], device='cuda:5'), tensor([1], device='cuda:5'), tensor([2], device='cuda:5'), tensor([3], device='cuda:5'), tensor([4], device='cuda:5'), tensor([5], device='cuda:5'), tensor([6], device='cuda:5'), tensor([7], device='cuda:5'), tensor([8], device='cuda:5'), tensor([9], device='cuda:5'), tensor([10], device='cuda:5'), tensor([11], device='cuda:5'), tensor([12], device='cuda:5'), tensor([13], device='cuda:5'), tensor([14], device='cuda:5'), tensor([15], device='cuda:5')]
+'), tensor([13], device='cuda:2'), tensor([14], device='cuda:2'), tensor([15], device='cuda:2')]Allgather, rank: 11, input_tensor: tensor([11], device='cuda:3'), output: [tensor([0], device='cuda:3'), tensor([1], device='cuda:3'), tensor([2], device='cuda:3'), tensor([3], device='cuda:3'), tensor([4], device='cuda:3'), tensor([5], device='cuda:3'), tensor([6], device='cuda:3'), tensor([7], device='cuda:3'), tensor([8], device='cuda:3'), tensor([9], device='cuda:3'), tensor([10], device='cuda:3'), tensor([11], device='cuda:3'), tensor([12], device='cuda:3'), tensor([13], device='cuda:3'), tensor([14], device='cuda:3'), tensor([15], device='cuda:3')]
+Allgather, rank: 0, input_tensor: tensor([0], device='cuda:0'), output: [tensor([0], device='cuda:0'), tensor([1], device='cuda:0'), tensor([2], device='cuda:0'), tensor([3], device='cuda:0'), tensor([4], device='cuda:0'), tensor([5], device='cuda:0'), tensor([6], device='cuda:0'), tensor([7], device='cuda:0'), tensor([8], device='cuda:0'), tensor([9], device='cuda:0'), tensor([10], device='cuda:0'), tensor([11], device='cuda:0'), tensor([12], device='cuda:0'), tensor([13], device='cuda:0'), tensor([14], device='cuda:0'), tensor([15], device='cuda:0')]Allgather, rank: 2, input_tensor: tensor([2], device='cuda:2'), output: [tensor([0], device='cuda:2'), tensor([1], device='cuda:2'), tensor([2], device='cuda:2'), tensor([3], device='cuda:2'), tensor([4], device='cuda:2'), tensor([5], device='cuda:2'), tensor([6], device='cuda:2'), tensor([7], device='cuda:2'), tensor([8], device='cuda:2'), tensor([9], device='cuda:2'), tensor([10], device='cuda:2'), tensor([11], device='cuda:2'), tensor([12], device='cuda:2'), tensor([13], device='cuda:2'), tensor([14], device='cuda:2'), tensor([15], device='cuda:2')]
+Allgather, rank: 14, input_tensor: tensor([14], device='cuda:6'), output: [tensor([0], device='cuda:6'), tensor([1], device='cuda:6'), tensor([2], device='cuda:6'), tensor([3], device='cuda:6'), tensor([4], device='cuda:6'), tensor([5], device='cuda:6'), tensor([6], device='cuda:6'), tensor([7], device='cuda:6'), tensor([8], device='cuda:6'), tensor([9], device='cuda:6'), tensor([10], device='cuda:6'), tensor([11], device='cuda:6'), tensor([12], device='cuda:6'), tensor([13], device='cuda:6'), tensor([14], device='cuda:6'), tensor([15], device='cuda:6')]Allgather, rank: 15, input_tensor: tensor([15], device='cuda:7'), output: [tensor([0], device='cuda:7'), tensor([1], device='cuda:7'), tensor([2], device='cuda:7'), tensor([3], device='cuda:7'), tensor([4], device='cuda:7'), tensor([5], device='cuda:7'), tensor([6], device='cuda:7'), tensor([7], device='cuda:7'), tensor([8], device='cuda:7'), tensor([9], device='cuda:7'), tensor([10], device='cuda:7'), tensor([11], device='cuda:7'), tensor([12], device='cuda:7'), tensor([13], device='cuda:7'), tensor([14], device='cuda:7'), tensor([15], device='cuda:7')]
+
+
+Allgather, rank: 9, input_tensor: tensor([9], device='cuda:1'), output: [tensor([0], device='cuda:1'), tensor([1], device='cuda:1'), tensor([2], device='cuda:1'), tensor([3], device='cuda:1'), tensor([4], device='cuda:1'), tensor([5], device='cuda:1'), tensor([6], device='cuda:1'), tensor([7], device='cuda:1'), tensor([8], device='cuda:1'), tensor([9], device='cuda:1'), tensor([10], device='cuda:1'), tensor([11], device='cuda:1'), tensor([12], device='cuda:1'), tensor([13], device='cuda:1'), tensor([14], device='cuda:1'), tensor([15], device='cuda:1')]
+
+
+
+Allgather, rank: 4, input_tensor: tensor([4], device='cuda:4'), output: [tensor([0], device='cuda:4'), tensor([1], device='cuda:4'), tensor([2], device='cuda:4'), tensor([3], device='cuda:4'), tensor([4], device='cuda:4'), tensor([5], device='cuda:4'), tensor([6], device='cuda:4'), tensor([7], device='cuda:4'), tensor([8], device='cuda:4'), tensor([9], device='cuda:4'), tensor([10], device='cuda:4'), tensor([11], device='cuda:4'), tensor([12], device='cuda:4'), tensor([13], device='cuda:4'), tensor([14], device='cuda:4'), tensor([15], device='cuda:4')]
+Allgather, rank: 7, input_tensor: tensor([7], device='cuda:7'), output: [tensor([0], device='cuda:7'), tensor([1], device='cuda:7'), tensor([2], device='cuda:7'), tensor([3], device='cuda:7'), tensor([4], device='cuda:7'), tensor([5], device='cuda:7'), tensor([6], device='cuda:7'), tensor([7], device='cuda:7'), tensor([8], device='cuda:7'), tensor([9], device='cuda:7'), tensor([10], device='cuda:7'), tensor([11], device='cuda:7'), tensor([12], device='cuda:7'), tensor([13], device='cuda:7'), tensor([14], device='cuda:7'), tensor([15], device='cuda:7')]
+Allgather, rank: 8, input_tensor: tensor([8], device='cuda:0'), output: [tensor([0], device='cuda:0'), tensor([1], device='cuda:0'), tensor([2], device='cuda:0'), tensor([3], device='cuda:0'), tensor([4], device='cuda:0'), tensor([5], device='cuda:0'), tensor([6], device='cuda:0'), tensor([7], device='cuda:0'), tensor([8], device='cuda:0'), tensor([9], device='cuda:0'), tensor([10], device='cuda:0'), tensor([11], device='cuda:0'), tensor([12], device='cuda:0'), tensor([13], device='cuda:0'), tensor([14], device='cuda:0'), tensor([15], device='cuda:0')]
+Allgather, rank: 12, input_tensor: tensor([12], device='cuda:4'), output: [tensor([0], device='cuda:4'), tensor([1], device='cuda:4'), tensor([2], device='cuda:4'), tensor([3], device='cuda:4'), tensor([4], device='cuda:4'), tensor([5], device='cuda:4'), tensor([6], device='cuda:4'), tensor([7], device='cuda:4'), tensor([8], device='cuda:4'), tensor([9], device='cuda:4'), tensor([10], device='cuda:4'), tensor([11], device='cuda:4'), tensor([12], device='cuda:4'), tensor([13], device='cuda:4'), tensor([14], device='cuda:4'), tensor([15], device='cuda:4')]
+
+
+
+
+
+Testing dist_broadcast ----------------------------------------------------
+Broadcast, rank: 1, before broadcast tensor: tensor([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], device='cuda:1') after broadcast tensor: tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], device='cuda:1')
+Broadcast, rank: 0, before broadcast tensor: tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], device='cuda:0') after broadcast tensor: tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], device='cuda:0')
+Broadcast, rank: 14, before broadcast tensor: tensor([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], device='cuda:6') after broadcast tensor: tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], device='cuda:6')Broadcast, rank: 9, before broadcast tensor: tensor([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], device='cuda:1') after broadcast tensor: tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], device='cuda:1')
+Broadcast, rank: 12, before broadcast tensor: tensor([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], device='cuda:4') after broadcast tensor: tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], device='cuda:4')
+Broadcast, rank: 10, before broadcast tensor: tensor([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], device='cuda:2') after broadcast tensor: tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], device='cuda:2')
+Broadcast, rank: 8, before broadcast tensor: tensor([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], device='cuda:0') after broadcast tensor: tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], device='cuda:0')
+Broadcast, rank: 5, before broadcast tensor: tensor([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], device='cuda:5') after broadcast tensor: tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], device='cuda:5')Broadcast, rank: 4, before broadcast tensor: tensor([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], device='cuda:4') after broadcast tensor: tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], device='cuda:4')
+Broadcast, rank: 3, before broadcast tensor: tensor([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], device='cuda:3') after broadcast tensor: tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], device='cuda:3')
+Broadcast, rank: 6, before broadcast tensor: tensor([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], device='cuda:6') after broadcast tensor: tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], device='cuda:6')
+
+
+Broadcast, rank: 15, before broadcast tensor: tensor([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], device='cuda:7') after broadcast tensor: tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], device='cuda:7')
+Broadcast, rank: 7, before broadcast tensor: tensor([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], device='cuda:7') after broadcast tensor: tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], device='cuda:7')
+Broadcast, rank: 11, before broadcast tensor: tensor([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], device='cuda:3') after broadcast tensor: tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], device='cuda:3')
+Broadcast, rank: 2, before broadcast tensor: tensor([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], device='cuda:2') after broadcast tensor: tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], device='cuda:2')
+Broadcast, rank: 13, before broadcast tensor: tensor([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], device='cuda:5') after broadcast tensor: tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], device='cuda:5')
+
+
+
+
+=== Done in 32 sec.
