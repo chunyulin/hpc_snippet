@@ -1,0 +1,13 @@
+#!/bin/bash
+####SBATCH -A GOV113080
+#SBATCH -p nchc
+#SBATCH -J torch
+#SBATCH --nodes=2 --ntasks-per-node=1  ## One torchrun per node
+#SBATCH --gres=gpu:8                   ## Each torchrun will fork workers to use 8 GPUs
+#SBATCH -t 0-0:10
+
+srun hostname
+srun bash ./torchrun_wrapper.sh
+
+echo "=== Done in ${SECONDS} sec."
+
